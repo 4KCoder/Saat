@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Türkiye Saati</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background-color: #0f0f0f;
+      color: #f0f0f0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .clock-container {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .clock-container:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 40px rgba(0, 255, 200, 0.15);
+    }
+
+    .clock-title {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #00ffe0;
+      letter-spacing: 1px;
+    }
+
+    .clock-time {
+      font-size: 4.5rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #ffffff;
+    }
+
+    .clock-sub {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #888;
+    }
+
+    @media (max-width: 500px) {
+      .clock-title {
+        font-size: 1.6rem;
+      }
+
+      .clock-time {
+        font-size: 3.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-container">
+    <div class="clock-title">Türkiye Saati</div>
+    <div class="clock-time" id="clock">--:--:--</div>
+    <div class="clock-sub">Otomatik güncelleniyor</div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const options = { timeZone: 'Europe/Istanbul', hour12: false };
+      const timeStr = now.toLocaleTimeString('tr-TR', options);
+      document.getElementById('clock').textContent = timeStr;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
